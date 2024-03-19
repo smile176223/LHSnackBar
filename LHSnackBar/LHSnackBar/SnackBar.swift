@@ -14,7 +14,7 @@ public struct SnackModel {
         
         var icon: String {
             switch self {
-            case .network: "network"
+            case .network: "wifi.exclamationmark"
             }
         }
     }
