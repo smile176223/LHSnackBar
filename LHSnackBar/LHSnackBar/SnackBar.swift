@@ -7,42 +7,96 @@
 
 import SwiftUI
 
-struct SnackBar: View {
+public struct SnackModel {
     
-    let text: String
-    let action: () -> Void
-    
-    init(text: String, action: @escaping () -> Void = {}) {
-        self.text = text
-        self.action = action
+    public enum SnackType {
+        case network
+        
+        var icon: String {
+            switch self {
+            case .network: "network"
+            }
+        }
     }
     
-    var body: some View {
-        Button {
-            action()
-        } label: {
-            
-            Image(systemName: "network")
-                .padding(.leading, 16)
-                .foregroundStyle(.white)
-            
-            Text(text)
-                .padding(.top, 15)
-                .padding(.bottom, 15)
-                .padding(.leading, 8)
-                .font(Font.callout)
-                .foregroundColor(Color.white)
-            
-            Spacer()
-            
+    let snackType: SnackType
+    let title: String
+}
+
+struct SnackBarModifier: ViewModifier {
+    
+    @Binding var model: SnackModel?
+    
+    init(model: Binding<SnackModel?>) {
+        _model = model
+    }
+    
+    public func body(content: Content) -> some View {
+        content.overlay {
+            VStack {
+                if model != nil {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Image(systemName: model?.snackType.icon ?? "")
+                                .frame(width: 44, height: 44, alignment: .leading)
+                                .foregroundStyle(.white)
+                            
+                            Text(model?.title ?? "")
+                                .font(Font.callout)
+                                .padding(.leading, -16)
+                                .foregroundColor(Color.white)
+                                .lineLimit(1)
+                            
+                            Spacer()
+                        }
+                        .padding(.top, 8)
+                        .padding(.bottom, 8)
+                        .padding(.leading, 16)
+                        .padding(.trailing, 16)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(Color.black.opacity(0.8))
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                    }
+                    .padding()
+                    .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
+                    .onTapGesture {
+                        withAnimation {
+                            model = nil
+                        }
+                    }
+                    .gesture(
+                        DragGesture()
+                            .onChanged { _ in
+                                withAnimation {
+                                    model = nil
+                                }
+                            }
+                    )
+                    .animation(.easeInOut)
+                }
+            }
         }
-        .lineLimit(1)
-        .background(RoundedRectangle(cornerRadius: 5).fill(Color.black.opacity(0.8)))
-        .frame(width: UIScreen.main.bounds.width - 32, height: 44, alignment: .leading)
-        .multilineTextAlignment(.leading)
     }
 }
 
-#Preview {
-    SnackBar(text: "No internet connection.")
+struct TestSnackModifier: View {
+    @State var model: SnackModel?
+    var body: some View {
+        VStack {
+            Button("Test") { model = SnackModel(snackType: .network, title: "No network connection") }
+            Button("Reset") { model = nil }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .modifier(SnackBarModifier(model: $model))
+    }
 }
+
+
+struct SnackBar_Previews: PreviewProvider {
+    static var previews: some View {
+        TestSnackModifier()
+    }
+}
+
