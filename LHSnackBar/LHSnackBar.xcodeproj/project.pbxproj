@@ -11,6 +11,7 @@
 		0CDAD9042BA2F00C00E50188 /* LHSnackBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDAD9032BA2F00C00E50188 /* LHSnackBarTests.swift */; };
 		0CDAD9052BA2F00C00E50188 /* LHSnackBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CDAD8F92BA2F00C00E50188 /* LHSnackBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CDAD90F2BA2F01B00E50188 /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDAD90E2BA2F01B00E50188 /* SnackBar.swift */; };
+		0CE719E52BA92F9E004AFF6C /* SnackBar+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE719E42BA92F9E004AFF6C /* SnackBar+UIKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		0CDAD8FE2BA2F00C00E50188 /* LHSnackBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LHSnackBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CDAD9032BA2F00C00E50188 /* LHSnackBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LHSnackBarTests.swift; sourceTree = "<group>"; };
 		0CDAD90E2BA2F01B00E50188 /* SnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
+		0CE719E42BA92F9E004AFF6C /* SnackBar+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnackBar+UIKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				0CDAD8F92BA2F00C00E50188 /* LHSnackBar.h */,
 				0CDAD90E2BA2F01B00E50188 /* SnackBar.swift */,
+				0CE719E42BA92F9E004AFF6C /* SnackBar+UIKit.swift */,
 			);
 			path = LHSnackBar;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CDAD90F2BA2F01B00E50188 /* SnackBar.swift in Sources */,
+				0CE719E52BA92F9E004AFF6C /* SnackBar+UIKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

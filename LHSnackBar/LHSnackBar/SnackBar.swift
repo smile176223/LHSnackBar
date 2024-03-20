@@ -20,7 +20,7 @@ public struct SnackModel {
     }
     
     let snackType: SnackType
-    let title: String
+    let message: String
 }
 
 struct SnackBarModifier: ViewModifier {
@@ -42,7 +42,7 @@ struct SnackBarModifier: ViewModifier {
                                 .frame(width: 44, height: 44, alignment: .leading)
                                 .foregroundStyle(.white)
                             
-                            Text(model?.title ?? "")
+                            Text(model?.message ?? "")
                                 .font(Font.callout)
                                 .padding(.leading, -16)
                                 .foregroundColor(Color.white)
@@ -85,7 +85,7 @@ struct TestSnackModifier: View {
     @State var model: SnackModel?
     var body: some View {
         VStack {
-            Button("Test") { model = SnackModel(snackType: .network, title: "No network connection") }
+            Button("Test") { model = SnackModel(snackType: .network, message: "No network connection") }
             Button("Reset") { model = nil }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
