@@ -23,6 +23,7 @@ public struct SnackModel {
     let message: String
 }
 
+@available(iOS 15.0, *)
 struct SnackBarModifier: ViewModifier {
     
     @Binding var model: SnackModel?
@@ -81,6 +82,7 @@ struct SnackBarModifier: ViewModifier {
     }
 }
 
+@available(iOS 15.0, *)
 struct TestSnackModifier: View {
     @State var model: SnackModel?
     var body: some View {
@@ -93,7 +95,7 @@ struct TestSnackModifier: View {
     }
 }
 
-
+@available(iOS 15.0, *)
 struct SnackBar_Previews: PreviewProvider {
     static var previews: some View {
         TestSnackModifier()
